@@ -24,15 +24,7 @@ var config = JSON.parse(process.env.APP_CONFIG);
 //mongoose.connect('mongodb://localhost:27017/Chat', {useNewUrlParser: true, useUnifiedTopology: true});
 MongoClient.connect(
     "mongodb://" + config.mongo.user + ":" + encodeURIComponent(mongoPassword) + "@" +
-    config.mongo.hostString,
-    function(err, db) {
-        if(!err) {
-            res.end("We are connected to MongoDB");
-        } else {
-            res.end("Error while connecting to MongoDB");
-        }
-    }
-);
+    config.mongo.hostString);
 //UserModel
 
 var userSchema = new mongoose.Schema(

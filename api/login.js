@@ -74,7 +74,7 @@ router.post('/api/create/user', middle,(req, res) => {
         name: req.body.name,
         password: req.body.password
     });
-
+res.send('ok')
     received.save().then((document) => {
         userSchema.methods.generateAuthToken(document).then((tokenizedResult) => {
             res.send(_.pick(tokenizedResult, ['_id', 'name', 'token']))

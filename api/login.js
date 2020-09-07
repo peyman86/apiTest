@@ -11,8 +11,28 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());*/
 
-mongoose.connect('mongodb://localhost:27017/Chat', {useNewUrlParser: true, useUnifiedTopology: true});
+APP_CONFIG = {
+    "mongo": {
+        "hostString": "mongodb:27017/Chat",
+        "user": "peyman.ojworld@gmail.com",
+        "db": "Chat"
+    }
+}
+var mongoPassword = 'peyman15750';
+var config = JSON.parse(process.env.APP_CONFIG);
 
+//mongoose.connect('mongodb://localhost:27017/Chat', {useNewUrlParser: true, useUnifiedTopology: true});
+MongoClient.connect(
+    "mongodb://" + config.mongo.user + ":" + encodeURIComponent(mongoPassword) + "@" +
+    config.mongo.hostString,
+    function(err, db) {
+        if(!err) {
+            res.end("We are connected to MongoDB");
+        } else {
+            res.end("Error while connecting to MongoDB");
+        }
+    }
+);
 //UserModel
 
 var userSchema = new mongoose.Schema(
@@ -74,7 +94,7 @@ router.post('/api/create/user', middle,(req, res) => {
         name: req.body.name,
         password: req.body.password
     });
-res.send('ok')
+
     received.save().then((document) => {
         userSchema.methods.generateAuthToken(document).then((tokenizedResult) => {
             res.send(_.pick(tokenizedResult, ['_id', 'name', 'token']))

@@ -13,9 +13,9 @@ app.use(bodyParser.json());*/
 
 APP_CONFIG = {
     "mongo": {
-        "hostString": "mongodb:27017/Chat",
-        "user": "peyman.ojworld@gmail.com",
-        "db": "Chat"
+        "hostString": "mongodb:27017/298099ef1c15bc3cdfb67fdfb3705b29",
+        "user": "298099ef1c15bc3cdfb67fdfb3705b29",
+        "db": "298099ef1c15bc3cdfb67fdfb3705b29"
     }
 }
 var mongoPassword = 'peyman15750';

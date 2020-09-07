@@ -1789,7 +1789,7 @@
         meridiemParse: defaultLocaleMeridiemParse
     };
 
-    // internal storage for locale config files
+    // internal uploads for locale config uploads
     var locales = {};
     var localeFamilies = {};
     var globalLocale;

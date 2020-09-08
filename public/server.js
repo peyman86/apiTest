@@ -89,7 +89,7 @@ app.get('/login',(req,res)=>{
 app.use(express.static(publicPath))
 
 
-server.listen(port, ()=>{
+server.listen(process.env.PORT, '0.0.0.0', ()=>{
     console.log(`Server is up on ${port}`)
 })
 

@@ -7,7 +7,7 @@ const bodyParser=require('body-parser');
 var {generateMessage, generateLocationMessage} = require('../server/utils/message')
 var {isRealString} = require('../server/utils/validation')
 const publicPath = path.join(__dirname, '../public')
-const port = 3000;
+const port = process.env.PORT || 3000;
 const {Users} = require('../server/utils/user')
 var app = express();
 var server = http.createServer(app)
@@ -89,7 +89,7 @@ app.get('/login',(req,res)=>{
 app.use(express.static(publicPath))
 
 
-server.listen(process.env.PORT, '0.0.0.0', ()=>{
+server.listen(port, '0.0.0.0', ()=>{
     console.log(`Server is up on ${port}`)
 })
 

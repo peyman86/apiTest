@@ -20,12 +20,12 @@ APP_CONFIG = {
     }
 }
 var mongoPassword = 'peyman15750';
-var config = JSON.parse(process.env.APP_CONFIG);
+//var config = JSON.parse(process.env.APP_CONFIG);
 
-//mongoose.connect('mongodb://localhost:27017/Chat', {useNewUrlParser: true, useUnifiedTopology: true});
-MongoClient.connect(
+mongoose.connect('mongodb://localhost:27017/Chat', {useNewUrlParser: true, useUnifiedTopology: true});
+/*MongoClient.connect(
     "mongodb://" + config.mongo.user + ":" + encodeURIComponent(mongoPassword) + "@" +
-    config.mongo.hostString);
+    config.mongo.hostString);*/
 //UserModel
 
 var userSchema = new mongoose.Schema(

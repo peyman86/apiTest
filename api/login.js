@@ -11,21 +11,24 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());*/
 
-APP_CONFIG = {
+/*APP_CONFIG = {
     "mongo": {
         "hostString": "11a.mongo.evennode.com:27018,11b.mongo.evennode.com:27018/298099ef1c15bc3cdfb67fdfb3705b29",
         "user": "298099ef1c15bc3cdfb67fdfb3705b29",
         "db": "298099ef1c15bc3cdfb67fdfb3705b29"
 
     }
-}
-var mongoPassword = 'peyman15750';
-//var config = JSON.parse(process.env.APP_CONFIG);
+}*/
 
-mongoose.connect('mongodb://localhost:27017/Chat', {useNewUrlParser: true, useUnifiedTopology: true});
-/*MongoClient.connect(
+var mongoPassword = 'peyman15750';
+var config = JSON.parse(process.env.APP_CONFIG);
+
+
+
+//mongoose.connect('mongodb://localhost:27017/Chat', {useNewUrlParser: true, useUnifiedTopology: true});
+mongodb.connect(
     "mongodb://" + config.mongo.user + ":" + encodeURIComponent(mongoPassword) + "@" +
-    config.mongo.hostString);*/
+    config.mongo.hostString);
 //UserModel
 
 var userSchema = new mongoose.Schema(

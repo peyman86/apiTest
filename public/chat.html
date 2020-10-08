@@ -18,16 +18,16 @@
         <ol id="messages" class="chat__messages"></ol>
 
         <div class="chat__footer">
-            <form id="message-form">
-                <input name="message" type="text" placeholder="Message" autofocus autocomplete="false" />
+            <form id="messageModel-form">
+                <input name="messageModel" type="text" placeholder="Message" autofocus autocomplete="false" />
                 <button type="submit">send</button>
                 <button id="send-location" type="button">Send Location</button>
             </form>
         </div>
     </div>
     
-    <script id="message-template" type="text/template">
-        <li class="message">
+    <script id="messageModel-template" type="text/template">
+        <li class="messageModel">
             <div class="message__title">
                 <h4>{{from}}</h4>
                 <span>{{createdAt}}</span>
@@ -38,8 +38,8 @@
         </li>
     </script>
     
-    <script id="location-message-template" type="text/template">
-        <li class="message">
+    <script id="location-messageModel-template" type="text/template">
+        <li class="messageModel">
             <div class="message__title">
                 <h4>{{from}}</h4>
                 <span>{{createdAt}}</span>

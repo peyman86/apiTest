@@ -1,9 +1,10 @@
 const jswonwebtoken = require('jsonwebtoken');
 const mongodb = require('mongodb').MongoClient;
 const mongodId = require('mongodb').ObjectID;
-const mongoose = require('mongoose');
+const mongoose = require('../db/dbConnection');
+/*mongoose.Promise = global.Promise*/
 const _ = require('lodash')
-mongoose.Promise = global.Promise
+
 const express = require('express');
 const router = express.Router();
 
@@ -21,14 +22,14 @@ app.use(bodyParser.json());*/
 }*/
 
 var mongoPassword = 'peyman15750';
-var config = JSON.parse(process.env.APP_CONFIG);
+//var config = JSON.parse(process.env.APP_CONFIG);
 
 
 
-//mongoose.connect('mongodb://localhost:27017/Chat', {useNewUrlParser: true, useUnifiedTopology: true});
-mongodb.connect(
+/*mongoose.connect('mongodb://localhost:27017/Chat', {useNewUrlParser: true, useUnifiedTopology: true});*/
+/*mongodb.connect(
     "mongodb://" + config.mongo.user + ":" + encodeURIComponent(mongoPassword) + "@" +
-    config.mongo.hostString);
+    config.mongo.hostString);*/
 //UserModel
 
 var userSchema = new mongoose.Schema(
@@ -50,7 +51,7 @@ var userSchema = new mongoose.Schema(
                 required: true
             }
         }],
-        createDate: Date,
+        createDate: Number,
         email: String
     })
 
@@ -88,13 +89,16 @@ var middle = (req,res,next)=>{
 router.post('/api/create/user', middle,(req, res) => {
     var received = new userModel({
         name: req.body.name,
-        password: req.body.password
+        password: req.body.password,
+        createDate:new Date().getTime()
     });
 
     received.save().then((document) => {
         userSchema.methods.generateAuthToken(document).then((tokenizedResult) => {
-            res.send(_.pick(tokenizedResult, ['_id', 'name', 'token']))
+            res.send(_.pick(tokenizedResult, ['_id', 'name', 'token','createDate']))
         })
+    }).catch((e)=>{
+        res.send(e.message);
     })
 
 })
